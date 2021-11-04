@@ -2,16 +2,6 @@ package com.d10ng.coroutines
 
 import kotlinx.coroutines.*
 
-fun main() {
-    launchMain {
-        println(this.toString())
-        launchIO {
-            println(this.toString())
-        }
-        delay(100)
-    }
-}
-
 /**
  * 主线程执行
  * @param block [@kotlin.ExtensionFunctionType] SuspendFunction1<CoroutineScope, Unit>
