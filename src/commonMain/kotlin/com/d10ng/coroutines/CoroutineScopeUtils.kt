@@ -2,6 +2,16 @@ package com.d10ng.coroutines
 
 import kotlinx.coroutines.*
 
+fun main() {
+    launchMain {
+        println(this.toString())
+        launchIO {
+            println(this.toString())
+        }
+        delay(100)
+    }
+}
+
 /**
  * 主线程执行
  * @param block [@kotlin.ExtensionFunctionType] SuspendFunction1<CoroutineScope, Unit>
@@ -21,7 +31,7 @@ fun launchMain(
 fun launchIO(
     block: suspend CoroutineScope.() -> Unit
 ): Job {
-    return CoroutineScope(Dispatchers.IO).launch(block = block)
+    return CoroutineScope(Dispatchers.Default).launch(block = block)
 }
 
 /**
@@ -47,7 +57,7 @@ fun <T> CoroutineScope.launchIO2Main(getIO: suspend () -> T, toMain:(value: T) -
  * @param toMain Function1<[@kotlin.ParameterName] T, Unit>
  */
 fun <T> launchIO2Main(getIO: suspend () -> T, toMain:(value: T) -> Unit) {
-    CoroutineScope(Dispatchers.IO).launchIO2Main(getIO, toMain)
+    CoroutineScope(Dispatchers.Default).launchIO2Main(getIO, toMain)
 }
 
 /**
@@ -66,4 +76,4 @@ suspend fun <T> withMain(
  */
 suspend fun <T> withIO(
     block: suspend CoroutineScope.() -> T
-): T = withContext(Dispatchers.IO, block)
+): T = withContext(Dispatchers.Default, block)

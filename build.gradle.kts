@@ -1,6 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.5.31"
-    java
+    kotlin("multiplatform") version "1.5.31"
     id("maven")
     id("maven-publish")
 }
@@ -12,13 +11,24 @@ repositories {
     maven("https://jitpack.io" )
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-}
-
-dependencies {
-    implementation(kotlin("stdlib"))
-    // 协程
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
+kotlin {
+    jvm {
+        compilations.all {
+            kotlinOptions.jvmTarget = "1.8"
+        }
+    }
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                implementation(kotlin("stdlib"))
+                // 协程
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
+            }
+        }
+        val commonTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
+            }
+        }
+    }
 }
