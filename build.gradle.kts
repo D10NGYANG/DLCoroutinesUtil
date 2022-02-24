@@ -3,7 +3,8 @@ plugins {
     id("maven-publish")
 }
 
-group = "com.d10ng"
+group = "com.github.D10NGYANG"
+version = "0.3"
 
 repositories {
     mavenCentral()
@@ -23,18 +24,6 @@ kotlin {
             }
         }
     }*/
-    val publicationsFromMainHost =
-        listOf(jvm()/*, js()*/).map { it.name } + "kotlinMultiplatform"
-    publishing {
-        publications {
-            matching { it.name in publicationsFromMainHost }.all {
-                val targetPublication = this@all
-                tasks.withType<AbstractPublishToMaven>()
-                    .matching { it.publication == targetPublication }
-                    .configureEach { onlyIf { findProperty("isMainHost") == "true" } }
-            }
-        }
-    }
     sourceSets {
         val commonMain by getting {
             dependencies {
