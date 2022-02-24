@@ -15,9 +15,9 @@ allprojects {
 ```gradle
 dependencies {
     // 协程封装工具
-    implementation 'com.github.D10NGYANG:DLCoroutinesUtil:0.2'
+    implementation 'com.github.D10NGYANG:DLCoroutinesUtil:0.3'
     // 协程
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0"
 }
 ```
 3 混淆
