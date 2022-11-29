@@ -39,3 +39,18 @@ kotlin {
         }
     }
 }
+
+publishing {
+    repositories {
+        maven {
+            url = uri("/Users/d10ng/project/kotlin/maven-repo/repository")
+        }
+        maven {
+            credentials {
+                username = "ydl"
+                password = "hailiao123"
+            }
+            setUrl("https://nexus.bds100.com/repository/maven-releases/")
+        }
+    }
+}
