@@ -19,7 +19,7 @@ dependencies {
     // 协程封装工具
     implementation 'com.github.D10NGYANG:DLCoroutinesUtil:0.4.0'
     // 协程
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
 }
 ```
 3 混淆
