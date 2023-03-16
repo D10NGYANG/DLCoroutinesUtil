@@ -8,6 +8,8 @@ allprojects {
   repositories {
     ...
     maven { url 'https://jitpack.io' }
+    // 我的github镜像仓库
+    maven { url 'https://raw.githubusercontent.com/D10NGYANG/maven-repo/main/repository'}
   }
 }
 ```
@@ -15,7 +17,7 @@ allprojects {
 ```gradle
 dependencies {
     // 协程封装工具
-    implementation 'com.github.D10NGYANG:DLCoroutinesUtil:0.3'
+    implementation 'com.github.D10NGYANG:DLCoroutinesUtil:0.4'
     // 协程
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0"
 }

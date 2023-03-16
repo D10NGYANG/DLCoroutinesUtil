@@ -1,10 +1,10 @@
 plugins {
-    kotlin("multiplatform") version "1.6.10"
+    kotlin("multiplatform") version "1.8.10"
     id("maven-publish")
 }
 
 group = "com.github.D10NGYANG"
-version = "0.3"
+version = "0.4"
 
 repositories {
     mavenCentral()
@@ -29,7 +29,7 @@ kotlin {
             dependencies {
                 implementation(kotlin("stdlib"))
                 // 协程
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
             }
         }
         val commonTest by getting {
@@ -40,6 +40,8 @@ kotlin {
     }
 }
 
+val bds100MavenUsername: String by project
+val bds100MavenPassword: String by project
 publishing {
     repositories {
         maven {
@@ -47,8 +49,8 @@ publishing {
         }
         maven {
             credentials {
-                username = "ydl"
-                password = "hailiao123"
+                username = bds100MavenUsername
+                password = bds100MavenPassword
             }
             setUrl("https://nexus.bds100.com/repository/maven-releases/")
         }
