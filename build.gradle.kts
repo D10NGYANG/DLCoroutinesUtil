@@ -1,10 +1,11 @@
 plugins {
     kotlin("multiplatform") version "1.8.10"
     id("maven-publish")
+    id("dev.petuska.npm.publish") version "3.2.1"
 }
 
 group = "com.github.D10NGYANG"
-version = "0.4"
+version = "0.4.0"
 
 repositories {
     mavenCentral()
@@ -17,13 +18,12 @@ kotlin {
             kotlinOptions.jvmTarget = "1.8"
         }
     }
-    /*js(LEGACY) {
-        browser {
-            commonWebpackConfig {
-                cssSupport.enabled = true
-            }
-        }
-    }*/
+    js(IR) {
+        moduleName = "dl-coroutines-util"
+        browser()
+        binaries.library()
+        binaries.executable()
+    }
     sourceSets {
         val commonMain by getting {
             dependencies {
@@ -53,6 +53,20 @@ publishing {
                 password = bds100MavenPassword
             }
             setUrl("https://nexus.bds100.com/repository/maven-releases/")
+        }
+    }
+}
+
+npmPublish {
+    registries {
+        register("npm-hosted") {
+            uri.set("https://nexus.bds100.com/repository/npm-hosted")
+        }
+    }
+    packages {
+        named("js") {
+            scope.set("hailiao")
+            packageName.set("dl-coroutines-util")
         }
     }
 }
